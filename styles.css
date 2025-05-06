@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(to right, #fceabb, #f8b500);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.book-container {
+  perspective: 2000px;
+}
+
+.book {
+  width: 800px;
+  height: 500px;
+  position: relative;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  background: #8b5e3c;
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  line-height: 500px;
+  border-radius: 10px;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 1.2s ease;
+  transform-origin: left;
+  z-index: 3;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.cover:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transform: scaleX(0) rotateX(30deg);
+  transform-origin: left;
+  transition: transform 1.2s ease;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.book.opened .inner {
+  transform: scaleX(1) rotateX(0deg);
+}
+
+.page {
+  width: 50%;
+  height: 100%;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  background: #fff8dc;
+  overflow: hidden;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+}
+
+.left-page {
+  border-right: 2px solid #8b5e3c;
+}
+
+.page h2, .page h3 {
+  margin-top: 0;
+  font-size: 28px;
+  color: #8b5e3c;
+}
+
+.page p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.8s;
+}
+
+.gallery img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border: 3px solid #8b5e3c;
+  border-radius: 8px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.book.opened .gallery img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.page h2, .page h3, .page p {
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
